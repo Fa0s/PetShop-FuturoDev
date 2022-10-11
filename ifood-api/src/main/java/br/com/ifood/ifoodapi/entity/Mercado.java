@@ -1,4 +1,4 @@
-package br.com.ifood.ifoodapi;
+package br.com.ifood.ifoodapi.entity;
 
 public class Mercado {
     private String nome;

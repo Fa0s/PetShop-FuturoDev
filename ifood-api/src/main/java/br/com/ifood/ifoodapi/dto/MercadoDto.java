@@ -1,4 +1,4 @@
-package br.com.ifood.ifoodapi;
+package br.com.ifood.ifoodapi.dto;
 
 public class MercadoDto {
     private String nome;

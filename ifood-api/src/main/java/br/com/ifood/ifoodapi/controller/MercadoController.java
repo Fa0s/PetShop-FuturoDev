@@ -1,5 +1,8 @@
-package br.com.ifood.ifoodapi;
+package br.com.ifood.ifoodapi.controller;
 
+import br.com.ifood.ifoodapi.entity.Mercado;
+import br.com.ifood.ifoodapi.dto.MercadoDto;
+import br.com.ifood.ifoodapi.service.MercadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,14 +13,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/mercados")
-public class MercadosController {
+public class MercadoController {
 
     @Autowired
     private MercadoService mercadoService;
 
     @GetMapping
-    public List<Mercado> listarMercados() {
-        return this.mercadoService.listar();
+    public ResponseEntity<List<MercadoDto>> listarMercados() {
+
+        List<MercadoDto> mercadosDto = new ArrayList<>();
+
+        List<Mercado> mercados = this.mercadoService.listar();
+
+        if(!mercados.isEmpty() || mercados != null) {
+            for(Mercado mercado:mercados) {
+                mercadosDto.add(new MercadoDto(mercado.getNome()));
+            }
+        }
+
+        return ResponseEntity.ok(mercadosDto);
     }
 
     @GetMapping("/{index}")
@@ -29,7 +43,7 @@ public class MercadosController {
         }
 
         MercadoDto mercadoDto = new MercadoDto(mercado.getNome());
-        return ResponseEntity.ok(mercadoDto);
+        return ResponseEntity.status(HttpStatus.OK).body(mercadoDto);
     }
 
     @PostMapping

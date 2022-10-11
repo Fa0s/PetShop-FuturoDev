@@ -1,7 +1,6 @@
-package br.com.ifood.ifoodapi;
+package br.com.ifood.ifoodapi.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import br.com.ifood.ifoodapi.entity.Mercado;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
